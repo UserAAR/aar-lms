@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Complete Spring Boot API project",
+      "description": "Finish implementing authentication endpoints",
+      "dueDate": "2023-11-10T23:59:00Z",
+      "priority": "HIGH",
+      "completed": false,
+      "tags": ["spring", "backend"],
+      "courseId": "101"
+    },
+    {
+      "id": 2,
+      "title": "Study React Hooks",
+      "description": "Complete the tutorial on useContext and useReducer",
+      "dueDate": "2023-11-05T23:59:00Z",
+      "priority": "MEDIUM",
+      "completed": true,
+      "tags": ["react", "frontend"],
+      "courseId": "102"
+    },
+    {
+      "id": 3,
+      "title": "Prepare project presentation",
+      "description": "Create slides for the final project presentation",
+      "dueDate": "2023-11-15T15:00:00Z",
+      "priority": "HIGH",
+      "completed": false,
+      "tags": ["presentation"],
+      "courseId": null
+    },
+    {
+      "id": 4,
+      "title": "Review Python fundamentals",
+      "description": "Go through Chapter 3-5 in the Python textbook",
+      "dueDate": "2023-11-08T23:59:00Z",
+      "priority": "LOW",
+      "completed": false,
+      "tags": ["python", "basics"],
+      "courseId": "103"
+    }
+  ]
+} 

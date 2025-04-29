@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Build a RESTful API with Spring Boot",
+      "category": "backend",
+      "difficulty": "intermediate",
+      "estimatedHours": 12,
+      "thumbnailUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "shortDescription": "Learn to build a RESTful API using Spring Boot and Java",
+      "tags": ["Java", "Spring Boot", "REST API", "JPA"],
+      "collaborators": 3,
+      "applications": 5,
+      "deadline": "2023-12-15"
+    },
+    {
+      "id": "2",
+      "title": "React Native Mobile App",
+      "category": "mobile",
+      "difficulty": "advanced",
+      "estimatedHours": 25,
+      "thumbnailUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "shortDescription": "Develop a cross-platform mobile application using React Native",
+      "tags": ["React Native", "JavaScript", "Mobile", "Redux"],
+      "collaborators": 2,
+      "applications": 8,
+      "deadline": "2023-11-30"
+    },
+    {
+      "id": "3",
+      "title": "Data Visualization Dashboard",
+      "category": "frontend",
+      "difficulty": "intermediate",
+      "estimatedHours": 15,
+      "thumbnailUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "shortDescription": "Create an interactive data visualization dashboard with D3.js",
+      "tags": ["D3.js", "JavaScript", "Data Visualization", "SVG"],
+      "collaborators": 4,
+      "applications": 3,
+      "deadline": "2023-12-05"
+    }
+  ]
+} 

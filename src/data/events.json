@@ -1,0 +1,43 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Web Development Workshop",
+      "description": "Introduction to HTML, CSS, and JavaScript fundamentals",
+      "startDate": "2023-11-15T09:00:00Z",
+      "endDate": "2023-11-15T17:00:00Z",
+      "location": "Online (Zoom)",
+      "category": "Workshop",
+      "speaker": "David Chen",
+      "capacity": 50,
+      "registered": 32,
+      "thumbnailUrl": "https://picsum.photos/300/200?random=7"
+    },
+    {
+      "id": 2,
+      "title": "AI Engineering Summit",
+      "description": "Latest trends and technologies in artificial intelligence and machine learning",
+      "startDate": "2023-12-05T10:00:00Z",
+      "endDate": "2023-12-07T18:00:00Z",
+      "location": "Tech Hub Conference Center",
+      "category": "Conference",
+      "speaker": "Multiple Speakers",
+      "capacity": 200,
+      "registered": 147,
+      "thumbnailUrl": "https://picsum.photos/300/200?random=8"
+    },
+    {
+      "id": 3,
+      "title": "Code Review Best Practices",
+      "description": "Learn how to conduct effective code reviews to improve team productivity",
+      "startDate": "2023-11-20T14:00:00Z",
+      "endDate": "2023-11-20T16:00:00Z",
+      "location": "Online (Microsoft Teams)",
+      "category": "Webinar",
+      "speaker": "Sarah Johnson",
+      "capacity": 100,
+      "registered": 78,
+      "thumbnailUrl": "https://picsum.photos/300/200?random=9"
+    }
+  ]
+} 

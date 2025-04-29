@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 216 40% 17%; /* #1B263B (Navy) */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 194 96% 58%; /* #2ECCFA (Turquoise) */
+    --secondary-foreground: 222 47% 11%;
+
+    --accent: 48 89% 60%; /* #F4D03F (Gold) */
+    --accent-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 5%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 216 40% 17%; /* #1B263B (Navy) */
+    --sidebar-foreground: 0 0% 100%; /* White text */
+    --sidebar-primary: 194 96% 58%; /* #2ECCFA (Turquoise) */
+    --sidebar-primary-foreground: 216 40% 17%; /* #1B263B (Navy) */
+    --sidebar-accent: 210 18% 25%; /* Slightly lighter than navy */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text */
+    --sidebar-border: 210 23% 22%; /* Even slightly lighter for borders */
+    --sidebar-ring: 194 96% 58%; /* #2ECCFA (Turquoise) */
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 194 96% 58%; /* #2ECCFA (Turquoise) */
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 216 40% 17%; /* #1B263B (Navy) */
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 48 89% 60%; /* #F4D03F (Gold) */
+    --accent-foreground: 222 47% 11%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 213 27% 84%;
+
+    /* Sidebar specific colors (darker in dark mode) */
+    --sidebar-background: 220 23% 13%; /* Darker navy */
+    --sidebar-foreground: 0 0% 100%; /* White text */
+    --sidebar-primary: 194 96% 58%; /* #2ECCFA (Turquoise) */
+    --sidebar-primary-foreground: 222 47% 11%; /* Dark background */
+    --sidebar-accent: 220 17% 17%; /* Slightly lighter accent */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text */
+    --sidebar-border: 219 21% 20%; /* Border color */
+    --sidebar-ring: 194 96% 58%; /* #2ECCFA (Turquoise) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-bold;
+  }
+}
+
+@layer components {
+  /* Custom button hover effect */
+  .btn-hover-effect {
+    @apply transition-all duration-200 ease-out hover:shadow-lg active:scale-95;
+  }
+
+  /* Card hover animation */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Form input animation */
+  .input-error {
+    @apply animate-shake;
+  }
+
+  /* Custom tooltip */
+  .custom-tooltip {
+    @apply bg-navy text-white px-3 py-1.5 rounded shadow-lg text-sm opacity-0 transition-opacity duration-200;
+  }
+  .custom-tooltip-visible {
+    @apply opacity-100;
+  }
+
+  /* Glassmorphism effect */
+  .glass-effect {
+    @apply bg-white/70 dark:bg-navy/70 backdrop-blur-md;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
