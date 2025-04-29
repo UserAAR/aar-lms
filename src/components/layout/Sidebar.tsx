@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   ChevronRight,
+  Menu,
+  X,
   // Using appropriate Lucide icons based on requirements
   BookOpen,
   Calendar,
@@ -49,7 +51,7 @@ const SidebarItem = ({
       <Link
         to={path}
         className={cn(
-          'flex items-center px-3 py-2 rounded-md transition-colors',
+          'flex items-center px-3 py-2.5 rounded-md transition-colors',
           isActive
             ? 'bg-sidebar-accent text-sidebar-accent-foreground'
             : 'text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground',
@@ -83,7 +85,7 @@ const SidebarItem = ({
             <Link
               key={index}
               to={item.path}
-              className="flex items-center px-3 py-1.5 rounded-md text-sm text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground transition-colors"
+              className="flex items-center px-3 py-2 rounded-md text-sm text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground transition-colors"
             >
               {item.icon && <item.icon className="h-4 w-4 mr-2" />}
               {item.title}
@@ -97,7 +99,24 @@ const SidebarItem = ({
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = window.location.pathname;
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileView = window.innerWidth < 768;
+      setIsMobile(isMobileView);
+      if (isMobileView) {
+        setCollapsed(true);
+        setIsOpen(false);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const sidebarItems = [
     {
@@ -171,88 +190,111 @@ export function Sidebar() {
   ];
 
   return (
-    <div
-      className={cn(
-        'h-screen bg-sidebar fixed left-0 top-0 z-30 flex flex-col border-r border-sidebar-border transition-all duration-300 ease-in-out',
-        collapsed ? 'w-16' : 'w-64'
+    <>
+      {/* Mobile Menu Button */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="fixed top-4 left-4 z-40 md:hidden p-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </Button>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
       )}
-    >
-      <div className="flex h-16 items-center justify-between px-3 py-4">
-        <Link 
-          to="/" 
-          className={cn(
-            "flex items-center",
-            collapsed && "justify-center w-full"
-          )}
-          onClick={(e) => {
-            if (collapsed) {
-              e.preventDefault();
-              setCollapsed(false);
-            }
-          }}
-        >
-          <div className={cn(
-            "rounded-full bg-sidebar-primary p-0.5 flex items-center justify-center",
-            collapsed ? "w-5 h-5" : "w-8 h-8"
-          )}>
-            <img
-              src="https://img.freepik.com/premium-vector/lms-logo-lms-letter-lms-letter-logo-design-initials-lms-logo-linked-with-circle-uppercase-monogram-logo-lms-typography-technology-business-real-estate-brand_229120-66009.jpg"
-              alt="AAR/LMS Logo"
-              className={cn(
-                "object-cover rounded-full",
-                collapsed ? "w-4 h-4" : "w-7 h-7"
-              )}
-            />
-          </div>
-          {!collapsed && (
-            <span className="ml-3 text-lg font-bold text-sidebar-foreground">
-              AAR/LMS
-            </span>
-          )}
-        </Link>
-        {!collapsed && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hover:bg-sidebar-accent/50"
-            onClick={() => setCollapsed(true)}
+
+      {/* Sidebar */}
+      <div
+        className={cn(
+          'h-screen bg-sidebar fixed left-0 top-0 z-30 flex flex-col border-r border-sidebar-border transition-all duration-300 ease-in-out',
+          collapsed ? 'w-16' : 'w-64',
+          isMobile && !isOpen && '-translate-x-full',
+          isMobile && isOpen && 'translate-x-0'
+        )}
+      >
+        <div className="flex h-16 items-center justify-between px-3 py-4">
+          <Link 
+            to="/" 
+            className={cn(
+              "flex items-center",
+              collapsed && "justify-center w-full"
+            )}
+            onClick={(e) => {
+              if (collapsed) {
+                e.preventDefault();
+                setCollapsed(false);
+              }
+            }}
           >
-            <ChevronRight className="h-4 w-4 text-sidebar-foreground rotate-180" />
-          </Button>
+            <div className={cn(
+              "rounded-full bg-sidebar-primary p-0.5 flex items-center justify-center",
+              collapsed ? "w-5 h-5" : "w-8 h-8"
+            )}>
+              <img
+                src="https://img.freepik.com/premium-vector/lms-logo-lms-letter-lms-letter-logo-design-initials-lms-logo-linked-with-circle-uppercase-monogram-logo-lms-typography-technology-business-real-estate-brand_229120-66009.jpg"
+                alt="AAR/LMS Logo"
+                className={cn(
+                  "object-cover rounded-full",
+                  collapsed ? "w-4 h-4" : "w-7 h-7"
+                )}
+              />
+            </div>
+            {!collapsed && (
+              <span className="ml-3 text-lg font-bold text-sidebar-foreground">
+                AAR/LMS
+              </span>
+            )}
+          </Link>
+          {!collapsed && !isMobile && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-sidebar-accent/50"
+              onClick={() => setCollapsed(true)}
+            >
+              <ChevronRight className="h-4 w-4 text-sidebar-foreground rotate-180" />
+            </Button>
+          )}
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-3 py-4">
+          <nav className="space-y-1">
+            {sidebarItems.map((item, index) => (
+              <SidebarItem
+                key={index}
+                icon={item.icon}
+                title={item.title}
+                path={item.path}
+                isCollapsed={collapsed}
+                isActive={
+                  pathname === item.path ||
+                  (item.subItems?.some((subItem) => pathname === subItem.path) ?? false)
+                }
+                subItems={item.subItems}
+              />
+            ))}
+          </nav>
+        </div>
+
+        {collapsed && !isMobile && (
+          <div className="p-3 border-t border-sidebar-border">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="mx-auto hover:bg-sidebar-accent/50"
+              onClick={() => setCollapsed(false)}
+            >
+              <ChevronRight className="h-4 w-4 text-sidebar-foreground" />
+            </Button>
+          </div>
         )}
       </div>
-
-      <div className="flex-1 overflow-auto px-3 py-4">
-        <nav className="space-y-1">
-          {sidebarItems.map((item, index) => (
-            <SidebarItem
-              key={index}
-              icon={item.icon}
-              title={item.title}
-              path={item.path}
-              isCollapsed={collapsed}
-              isActive={
-                pathname === item.path ||
-                (item.subItems?.some((subItem) => pathname === subItem.path) ?? false)
-              }
-              subItems={item.subItems}
-            />
-          ))}
-        </nav>
-      </div>
-
-      {collapsed && (
-        <div className="p-3 border-t border-sidebar-border">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="mx-auto hover:bg-sidebar-accent/50"
-            onClick={() => setCollapsed(false)}
-          >
-            <ChevronRight className="h-4 w-4 text-sidebar-foreground" />
-          </Button>
-        </div>
-      )}
-    </div>
+    </>
   );
 }

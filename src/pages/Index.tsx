@@ -81,28 +81,36 @@ const Index = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="py-16 px-4 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="w-full md:w-1/2">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
                 Welcome to AAR/LMS Academy
               </h1>
-              <p className="text-lg mb-6 text-muted-foreground">
+              <p className="text-base md:text-lg mb-6 text-muted-foreground">
                 Your journey to becoming a top-tier developer starts here.
                 Access world-class courses, collaborate on real projects, and join
                 a community of like-minded professionals.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <CustomButton size="lg" variant="primary">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CustomButton 
+                  size="lg" 
+                  variant="primary" 
+                  className="w-full sm:w-auto py-3 px-6"
+                >
                   <Link to="/classroom/courses">Explore Courses</Link>
                 </CustomButton>
-                <CustomButton size="lg" variant="outline">
+                <CustomButton 
+                  size="lg" 
+                  variant="outline" 
+                  className="w-full sm:w-auto py-3 px-6"
+                >
                   <Link to="/projects">Browse Projects</Link>
                 </CustomButton>
               </div>
             </div>
-            <div className="md:w-1/2 relative">
+            <div className="w-full md:w-1/2 relative">
               <div className="rounded-lg overflow-hidden shadow-xl">
                 <img
                   src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
@@ -122,29 +130,33 @@ const Index = () => {
       </section>
 
       {/* Continue Learning Section */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">Continue Learning</h2>
-            <Button variant="outline" asChild>
+      <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <h2 className="text-xl md:text-2xl font-bold">Continue Learning</h2>
+            <Button 
+              variant="outline" 
+              asChild 
+              className="w-full sm:w-auto py-2 px-4"
+            >
               <Link to="/classroom/courses">View All Courses</Link>
             </Button>
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-64 rounded-lg bg-muted animate-pulse"
+                  className="h-48 md:h-64 rounded-lg bg-muted animate-pulse"
                 ></div>
               ))}
             </div>
           ) : recentCourses.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {recentCourses.map((course) => (
                 <Link to={`/classroom/courses/${course.id}`} key={course.id}>
-                  <CustomCard className="h-full">
+                  <CustomCard className="h-full hover:shadow-lg transition-shadow">
                     <div className="aspect-video w-full relative mb-4">
                       <img
                         src={course.thumbnailUrl}
@@ -158,17 +170,19 @@ const Index = () => {
                         ></div>
                       </div>
                     </div>
-                    <h3 className="font-semibold mb-2">{course.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      {course.instructor}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-muted-foreground">
-                        {course.completedLessons}/{course.totalLessons} lessons
-                      </span>
-                      <span className="text-xs font-medium">
-                        {course.progress}% complete
-                      </span>
+                    <div className="p-4">
+                      <h3 className="font-semibold mb-2 text-sm md:text-base">{course.title}</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground mb-2">
+                        {course.instructor}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-muted-foreground">
+                          {course.completedLessons}/{course.totalLessons} lessons
+                        </span>
+                        <span className="text-xs font-medium">
+                          {course.progress}% complete
+                        </span>
+                      </div>
                     </div>
                   </CustomCard>
                 </Link>
@@ -183,29 +197,33 @@ const Index = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-12 px-4 bg-muted/50">
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">Featured Projects</h2>
-            <Button variant="outline" asChild>
+      <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-8 bg-muted/50">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <h2 className="text-xl md:text-2xl font-bold">Featured Projects</h2>
+            <Button 
+              variant="outline" 
+              asChild 
+              className="w-full sm:w-auto py-2 px-4"
+            >
               <Link to="/projects">View All Projects</Link>
             </Button>
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-64 rounded-lg bg-background animate-pulse"
+                  className="h-48 md:h-64 rounded-lg bg-background animate-pulse"
                 ></div>
               ))}
             </div>
           ) : popularProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {popularProjects.map((project) => (
                 <Link to={`/projects/${project.id}`} key={project.id}>
-                  <CustomCard className="h-full">
+                  <CustomCard className="h-full hover:shadow-lg transition-shadow">
                     <div className="aspect-video w-full mb-4">
                       <img
                         src={project.thumbnailUrl}
@@ -213,29 +231,29 @@ const Index = () => {
                         className="rounded-md object-cover w-full h-full"
                       />
                     </div>
-                    <div className="mb-4">
-                      <h3 className="font-semibold mb-2">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground">
+                    <div className="p-4">
+                      <h3 className="font-semibold mb-2 text-sm md:text-base">{project.title}</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground mb-4">
                         {project.shortDescription}
                       </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.slice(0, 3).map((tag: string, i: number) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 rounded-full bg-muted text-xs"
-                        >
-                          {tag}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.slice(0, 3).map((tag: string, i: number) => (
+                          <span
+                            key={i}
+                            className="px-2 py-1 rounded-full bg-muted text-xs"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-muted-foreground">
+                          {project.estimatedHours} hours
                         </span>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-muted-foreground">
-                        {project.estimatedHours} hours
-                      </span>
-                      <span className="text-xs font-medium uppercase">
-                        {project.difficulty}
-                      </span>
+                        <span className="text-xs font-medium uppercase">
+                          {project.difficulty}
+                        </span>
+                      </div>
                     </div>
                   </CustomCard>
                 </Link>
